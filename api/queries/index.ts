@@ -26,8 +26,7 @@ export async function getAllRepoFiles() {
           }
     `
     }
-
     const { getQuery } = useFetch()
-
-    return await getQuery(query)
+    const result = await getQuery(query)
+    return result['data']
 }

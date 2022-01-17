@@ -4,15 +4,14 @@
         <div class="max-w-7xl mx-auto">
             <div class="relative z-10 pb-8 bg-red-50 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
                 <svg
+                    viewBox="0 0 100 100"
                     class="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-red-50 transform translate-x-1/2"
                     fill="currentColor"
-                    viewBox="0 0 100 100"
                     preserveAspectRatio="none"
                     aria-hidden="true"
                 >
-                    <polygon points="50,0 100,0 50,100 0,100" />
+                    <use xlink:href="svg/defs.svg#hero-img-angle"></use>
                 </svg>
-
                 <Popover>
                     <div class="relative pt-6 px-4 sm:px-6 lg:px-8">
                         <nav
@@ -24,8 +23,6 @@
                                     <a href="https://github.com/Suv4o/wallpaper-images" target="_blank">
                                         <span class="sr-only">Free Wallpapers</span>
                                         <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            xmlns:xlink="http://www.w3.org/1999/xlink"
                                             aria-hidden="true"
                                             role="img"
                                             class="h-8 w-auto sm:h-10 text-yellow-600"
@@ -34,10 +31,7 @@
                                             preserveAspectRatio="xMidYMid meet"
                                             viewBox="0 0 432 416"
                                         >
-                                            <path
-                                                d="M213.5 0q88.5 0 151 62.5T427 213q0 70-41 125.5T281 416q-14 2-14-11v-58q0-27-15-40q44-5 70.5-27t26.5-77q0-34-22-58q11-26-2-57q-18-5-58 22q-26-7-54-7t-53 7q-18-12-32.5-17.5T107 88h-6q-12 31-2 57q-22 24-22 58q0 55 27 77t70 27q-11 10-13 29q-42 18-62-18q-12-20-33-22q-2 0-4.5.5t-5 3.5t8.5 9q14 7 23 31q1 2 2 4.5t6.5 9.5t13 10.5T130 371t30-2v36q0 13-14 11q-64-22-105-77.5T0 213q0-88 62.5-150.5T213.5 0z"
-                                                fill="currentColor"
-                                            ></path>
+                                            <use xlink:href="svg/defs.svg#github-icon"></use>
                                         </svg>
                                     </a>
                                     <div class="-mr-2 flex items-center md:hidden">
@@ -81,8 +75,6 @@
                                 <div class="px-5 pt-4 flex items-center justify-between">
                                     <div>
                                         <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            xmlns:xlink="http://www.w3.org/1999/xlink"
                                             aria-hidden="true"
                                             role="img"
                                             class="h-8 w-auto sm:h-10 text-yellow-600"
@@ -91,10 +83,7 @@
                                             preserveAspectRatio="xMidYMid meet"
                                             viewBox="0 0 432 416"
                                         >
-                                            <path
-                                                d="M213.5 0q88.5 0 151 62.5T427 213q0 70-41 125.5T281 416q-14 2-14-11v-58q0-27-15-40q44-5 70.5-27t26.5-77q0-34-22-58q11-26-2-57q-18-5-58 22q-26-7-54-7t-53 7q-18-12-32.5-17.5T107 88h-6q-12 31-2 57q-22 24-22 58q0 55 27 77t70 27q-11 10-13 29q-42 18-62-18q-12-20-33-22q-2 0-4.5.5t-5 3.5t8.5 9q14 7 23 31q1 2 2 4.5t6.5 9.5t13 10.5T130 371t30-2v36q0 13-14 11q-64-22-105-77.5T0 213q0-88 62.5-150.5T213.5 0z"
-                                                fill="currentColor"
-                                            ></path>
+                                            <use xlink:href="svg/defs.svg#github-icon"></use>
                                         </svg>
                                     </div>
                                     <div class="-mr-2">
@@ -139,9 +128,7 @@
                             If you are looking to spruce up your desktop screens, feel free to choose from the selection
                             of free wallpapers below. You can search for any image by typing in the search bar, or
                             browse by category. You can also contribute with your own images by uploading them to our
-                            website. If you want to see more, click on the
-                            <span class="underline decoration-4 font-semibold">Explore</span> button below. If you want
-                            to download or save your favorite image, click on the
+                            website. If you want to download or save your favorite image, click on the
                             <span class="underline decoration-4 font-semibold">Sign Up</span> button to create an
                             account.
                         </span>

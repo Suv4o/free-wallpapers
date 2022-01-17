@@ -7,16 +7,13 @@
         <div class="sm:mt-5 mt-5 px-4">
             <label class="relative block">
                 <span class="sr-only">Search</span>
-                <span class="absolute inset-y-0 left-0 flex items-center sm:pl-5 pl-2">
-                    <svg class="h-5 w-5 fill-slate-300" viewBox="0 0 24 24">
-                        <path
-                            d="M18.031 16.617l4.283 4.282l-1.415 1.415l-4.282-4.283A8.96 8.96 0 0 1 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9s9 4.032 9 9a8.96 8.96 0 0 1-1.969 5.617zm-2.006-.742A6.977 6.977 0 0 0 18 11c0-3.868-3.133-7-7-7c-3.868 0-7 3.132-7 7c0 3.867 3.132 7 7 7a6.977 6.977 0 0 0 4.875-1.975l.15-.15z"
-                            fill="currentColor"
-                        ></path>
+                <span class="absolute inset-y-0 left-0 flex items-center sm:pl-3 pl-2">
+                    <svg class="sm:h-7 sm:w-7 h-5 w-5 fill-slate-400" viewBox="0 0 24 24">
+                        <use xlink:href="svg/defs.svg#search-icon"></use>
                     </svg>
                 </span>
                 <input
-                    class="placeholder:italic placeholder:text-slate-400 block bg-white w-full rounded-2xl sm:border-4 border-2 border-yellow-800 py-2 sm:pl-12 pl-9 pr-3 shadow-sm focus:outline-none focus:border-yellow-500 focus:ring-yellow-500 focus:ring-1 sm:text-3xl"
+                    class="placeholder:italic placeholder:text-slate-400 block bg-white w-full rounded-2xl border-2 border-yellow-800 py-2 sm:pl-12 pl-9 pr-3 shadow-sm focus:outline-none focus:border-yellow-500 focus:ring-yellow-500 focus:ring-1 sm:text-2xl"
                     placeholder="Search for an image..."
                     type="text"
                     name="search"

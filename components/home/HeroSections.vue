@@ -35,7 +35,7 @@
                                     </a>
                                     <div class="-mr-2 flex items-center md:hidden">
                                         <PopoverButton
-                                            class="bg-red-50 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500"
+                                            class="rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500"
                                         >
                                             <span class="sr-only">Open main menu</span>
                                             <MenuIcon class="h-6 w-6" aria-hidden="true" />
@@ -87,7 +87,7 @@
                                     </div>
                                     <div class="-mr-2">
                                         <PopoverButton
-                                            class="bg-red-50 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500"
+                                            class="rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500"
                                         >
                                             <span class="sr-only">Close main menu</span>
                                             <XIcon class="h-6 w-6" aria-hidden="true" />
@@ -143,7 +143,7 @@
                             <div class="mt-3 sm:mt-0 sm:ml-3">
                                 <a
                                     href="#"
-                                    class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-yellow-700 bg-red-50 hover:bg-yellow-200 md:py-4 md:text-lg md:px-10"
+                                    class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-yellow-700 hover:bg-yellow-200 md:py-4 md:text-lg md:px-10"
                                 >
                                     Sign Up
                                 </a>

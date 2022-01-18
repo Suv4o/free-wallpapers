@@ -1,15 +1,11 @@
 <template>
-    <div>Hello Nuxt 3</div>
+    <div class="px-4">
+        <home-hero-sections />
+        <home-search-bar />
+        <home-collections />
+    </div>
 </template>
 
-<script setup lang="ts">
-import { onMounted } from 'vue'
-import { getAllRepoFiles } from '@/api/queries'
-
-onMounted(async () => {
-    const data = await getAllRepoFiles()
-    console.log(data)
-})
-</script>
+<script setup></script>
 
 <style lang="scss" scoped></style>

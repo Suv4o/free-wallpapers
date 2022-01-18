@@ -1,7 +1,8 @@
 <template>
-    <div>
+    <div class="px-4">
         <home-hero-sections />
         <home-search-bar />
+        <home-collections />
     </div>
 </template>
 

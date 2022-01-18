@@ -1,4 +1,4 @@
-import { reactive, onMounted } from 'vue'
+import { reactive } from 'vue'
 import { Env } from '@/interfaces/global'
 export default function env() {
     const env = useRuntimeConfig()

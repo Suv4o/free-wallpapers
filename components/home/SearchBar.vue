@@ -1,10 +1,10 @@
 <template>
     <div>
-        <h2 class="px-4 sm:mt-10 mt-10 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+        <h2 class="sm:mt-10 mt-10 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
             <span class="block">Ready to to find your favourite images</span>
             <span class="block text-yellow-600">Start searching today.</span>
         </h2>
-        <div class="sm:mt-5 mt-5 px-4">
+        <div class="sm:mt-5 mt-5">
             <label class="relative block">
                 <span class="sr-only">Search</span>
                 <span class="absolute inset-y-0 left-0 flex items-center sm:pl-3 pl-2">
@@ -13,7 +13,7 @@
                     </svg>
                 </span>
                 <input
-                    class="placeholder:italic placeholder:text-slate-400 block bg-white w-full rounded-2xl border-2 border-yellow-800 py-2 sm:pl-12 pl-9 pr-3 shadow-sm focus:outline-none focus:border-yellow-500 focus:ring-yellow-500 focus:ring-1 sm:text-2xl"
+                    class="placeholder:italic placeholder:text-slate-400 block bg-white w-full rounded-xl border-2 border-yellow-800 py-2 sm:pl-12 pl-9 pr-3 shadow-sm focus:outline-none focus:border-yellow-500 focus:ring-yellow-500 focus:ring-1 sm:text-2xl"
                     placeholder="Search for an image..."
                     type="text"
                     name="search"

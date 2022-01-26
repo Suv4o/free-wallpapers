@@ -1,10 +1,10 @@
 <template>
     <div class="relative overflow-hidden">
         <div class="max-w-7xl mx-auto">
-            <div class="relative z-10 pb-8 bg-red-50 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
+            <div class="relative z-10 pb-8 bg-orange-50 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
                 <svg
                     viewBox="0 0 100 100"
-                    class="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-red-50 transform translate-x-1/2"
+                    class="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-orange-50 transform translate-x-1/2"
                     fill="currentColor"
                     preserveAspectRatio="none"
                     aria-hidden="true"
@@ -69,7 +69,7 @@
                             class="absolute z-10 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
                         >
                             <div
-                                class="rounded-lg shadow-md bg-red-50 ring-1 ring-black ring-opacity-5 overflow-hidden"
+                                class="rounded-lg shadow-md bg-orange-50 ring-1 ring-black ring-opacity-5 overflow-hidden"
                             >
                                 <div class="px-5 pt-4 flex items-center justify-between">
                                     <div>

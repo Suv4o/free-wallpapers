@@ -5,7 +5,7 @@
 @layer base {
     html,
     body {
-        @apply bg-red-50;
+        @apply bg-orange-50;
         @apply selection:bg-yellow-900;
         @apply selection:text-yellow-50;
     }

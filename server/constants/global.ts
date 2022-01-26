@@ -1,0 +1,2 @@
+export const EXCLUDE_FILES = ['README.md', 'TABLE-OF-CONTENTS.MD']
+export const TABLE_OF_CONTENT = 'TABLE-OF-CONTENTS.MD'

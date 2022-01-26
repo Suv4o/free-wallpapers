@@ -14,7 +14,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
         res.statusCode = 200
         res.end(JSON.stringify(result))
     } catch (err) {
-        res.statusCode = 500
+        res.statusCode = err.statusCode || 500
         res.end(JSON.stringify({ error: err.message }))
     }
 }

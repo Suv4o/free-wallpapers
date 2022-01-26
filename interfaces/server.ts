@@ -18,3 +18,14 @@ export interface Entries {
         text: string | null
     }
 }
+
+export interface ImageDescription {
+    [key: string]: {
+        Name: string
+        Tags: string
+        Location: string
+        Author: string
+        Social: string
+        Website: string
+    }
+}

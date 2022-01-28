@@ -17,6 +17,16 @@ export interface Entries {
         byteSize: number
         text: string | null
     }
+    url?: string
+    description?: {
+        Name: string
+        Tags: string
+        Location: string
+        Author: string
+        Social: string
+        Website: string
+    }
+    search?: boolean
 }
 
 export interface ImageDescription {

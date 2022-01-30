@@ -11,7 +11,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     try {
         const data: RepoData = await getAllRepoFiles()
         const result = getPaginatedData(
-            getImageData(data, search ? String(search) : ''),
+            await getImageData(data, search ? String(search) : ''),
             size ? Number(size) : 10,
             page ? Number(page) : 1
         )

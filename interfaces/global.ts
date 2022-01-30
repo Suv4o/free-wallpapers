@@ -3,4 +3,7 @@ export interface Env {
     GITHUB_USERNAME: string
     GITHUB_REPOSITORY: string
     GITHUB_GRAPHQL_URL: string
+    CLOUDINARY_CLOUD_NAME: string
+    CLOUDINARY_API_KEY: string
+    CLOUDINARY_API_SECRET: string
 }

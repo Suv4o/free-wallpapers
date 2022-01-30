@@ -1,8 +1,18 @@
-import { RepoData } from '../../interfaces/server'
+import { RepoData, Entries } from '../../interfaces/server'
 import getImageDescription from './getImageDescription'
 import { EXCLUDE_FILES, GITHUB_IMAGE_URL } from '../constants/global'
+// import ImageCloudinary from './ImageCloudinary'
 
-export default function getImageData(data: RepoData, search: string): Array<object> {
+export default async function getImageData(data: RepoData, search: string): Promise<Entries[]> {
+    // const cloudinaryImg = new ImageCloudinary()
+    // const uploadedImage = await cloudinaryImg.upload({
+    //     imageUrl: 'https://raw.githubusercontent.com/Suv4o/wallpaper-images/master/32-Image-Melbourne-Cityscape.jpg',
+    //     public_id: 'small/aleks1',
+    //     transformation: { width: 600, sharpen: 100, quality: 50 }
+    // })
+
+    // console.log(uploadedImage)
+
     const result = data.data.user.repository.object.entries.map((entry) => {
         if (!EXCLUDE_FILES.includes(entry.name)) {
             const imageId = entry.name.split('-', 1)[0]

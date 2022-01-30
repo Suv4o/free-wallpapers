@@ -39,3 +39,16 @@ export interface ImageDescription {
         Website: string
     }
 }
+
+export interface UploadImageOptions {
+    imageUrl: string
+    public_id: string
+    overwrite?: boolean
+    transformation: ImageTransformationOptions
+}
+
+export interface ImageTransformationOptions {
+    width: number
+    sharpen: number
+    quality: number
+}

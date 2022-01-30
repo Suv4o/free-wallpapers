@@ -7,3 +7,6 @@ export interface Env {
     CLOUDINARY_API_KEY: string
     CLOUDINARY_API_SECRET: string
 }
+export interface LooselyTypeObject {
+    [key: string]: any
+}

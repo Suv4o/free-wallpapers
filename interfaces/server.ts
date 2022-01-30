@@ -9,7 +9,6 @@ export interface RepoData {
         }
     }
 }
-
 export interface Entries {
     name: string
     extension: string
@@ -17,7 +16,7 @@ export interface Entries {
         byteSize: number
         text: string | null
     }
-    url?: string
+    smallUrl?: string
     description?: {
         Name: string
         Tags: string
@@ -30,14 +29,16 @@ export interface Entries {
 }
 
 export interface ImageDescription {
-    [key: string]: {
-        Name: string
-        Tags: string
-        Location: string
-        Author: string
-        Social: string
-        Website: string
-    }
+    [key: string]: ImageDescriptionBody
+}
+
+export interface ImageDescriptionBody {
+    Name: string
+    Tags: string
+    Location: string
+    Author: string
+    Social: string
+    Website: string
 }
 
 export interface UploadImageOptions {
@@ -51,4 +52,26 @@ export interface ImageTransformationOptions {
     width: number
     sharpen: number
     quality: number
+}
+
+export interface UploadedImage {
+    asset_id?: string
+    public_id?: string
+    version?: number
+    version_id?: string
+    signature?: string
+    width?: number
+    height?: number
+    format?: string
+    resource_type?: string
+    created_at?: string
+    tags?: string[]
+    bytes?: number
+    type?: string
+    etag?: string
+    placeholder?: boolean
+    url?: string
+    secure_url?: string
+    existing?: boolean
+    api_key?: string
 }

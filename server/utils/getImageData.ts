@@ -15,7 +15,7 @@ export default async function getImageData(data: RepoData, search: string): Prom
                     const imageName = entry.name.slice(0, entry.name.length - entry.extension.length)
                     const searchWords = search.toLowerCase().split(' ')
                     const description = imgTableDescription.getImageDescription(imageId)
-                    const uploadedSmallImg: UploadedImage = await cloudinaryImg.upload({
+                    const uploadedSmallImg = await cloudinaryImg.upload({
                         imageUrl: `${GITHUB_IMAGE_URL + entry.name}`,
                         public_id: `free-wallpaper/small/${imageName}`,
                         transformation: { width: 600, sharpen: 100, quality: 50 }

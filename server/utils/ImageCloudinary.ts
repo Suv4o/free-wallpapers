@@ -11,7 +11,7 @@ export default class ImageCloudinary {
         this.init()
     }
 
-    public async upload(options: UploadImageOptions): Promise<object> {
+    public async upload(options: UploadImageOptions): Promise<UploadedImage> {
         const { imageUrl, public_id, overwrite = false, transformation } = options
 
         try {

@@ -18,7 +18,7 @@ export function getPaginatedData(data: Array<object>, pageSize: number, pageNumb
     }
 
     const result = {
-        data: data.slice((pageNumber - 1) * pageSize, pageNumber * pageSize),
+        collection: data.slice((pageNumber - 1) * pageSize, pageNumber * pageSize),
         range: `${range.start}-${range.end}`,
         total: data.length
     }

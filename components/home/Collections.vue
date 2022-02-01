@@ -58,6 +58,13 @@ const callouts = [
         href: '#'
     },
     {
+        name: 'Desk and Office',
+        description: 'Work from home accessories',
+        imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-02-edition-01.jpg',
+        imageAlt: 'Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug.',
+        href: '#'
+    },
+    {
         name: 'Travel',
         description: 'Daily commute essentials',
         imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-02-edition-03.jpg',

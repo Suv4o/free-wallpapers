@@ -8,7 +8,6 @@
                             class="relative w-full h-80 bg-white rounded-lg overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1"
                         >
                             <img
-                                v-if="image"
                                 :src="image.smallUrl"
                                 :alt="image.description.Name"
                                 class="w-full h-full object-center object-cover"

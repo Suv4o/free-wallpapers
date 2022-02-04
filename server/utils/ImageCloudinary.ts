@@ -11,6 +11,19 @@ export default class ImageCloudinary {
         this.init()
     }
 
+    public async getImages(public_id: string[]): Promise<{ resources: Array<UploadedImage> }> {
+        try {
+            const images: { resources: Array<UploadedImage> } = await this.cloudinary.v2.api.resources_by_ids(public_id)
+
+            return images
+        } catch (err) {
+            if (err instanceof Error) {
+                throw new Error(err.message)
+            }
+            throw new Error('Error getting uploaded image')
+        }
+    }
+
     public async upload(options: UploadImageOptions): Promise<UploadedImage> {
         const { imageUrl, public_id, overwrite = false, transformation } = options
 

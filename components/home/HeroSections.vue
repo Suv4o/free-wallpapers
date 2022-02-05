@@ -169,11 +169,7 @@ import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
 import { MenuIcon, XIcon } from '@heroicons/vue/outline'
 import { gsap } from 'gsap'
 import ScrollTo from 'gsap/ScrollToPlugin'
-
-onMounted(() => {
-    gsap.registerPlugin(ScrollTo)
-    console.log(window)
-})
+gsap.registerPlugin(ScrollTo)
 
 const navigation = [
     { name: 'Top 10', href: '#' },

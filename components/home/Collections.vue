@@ -3,7 +3,16 @@
         <div class="max-w-7xl mx-auto">
             <div class="max-w-2xl mx-auto sm:py-10 py-8 lg:max-w-none">
                 <div class="space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-6">
-                    <div v-for="image in images" :key="image.name" class="group relative">
+                    <div
+                        v-for="(image, index) in images"
+                        :key="image.name"
+                        class="group relative"
+                        :ref="
+                            (el) => {
+                                if (el) allRefsImages[`image-${String(index)}`] = el
+                            }
+                        "
+                    >
                         <div
                             class="relative w-full h-80 bg-slate-300 rounded-lg overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1"
                         >
@@ -31,14 +40,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onBeforeUpdate } from 'vue'
 import { ImageFromApi } from '@/interfaces/client'
 import { Entries } from '@/interfaces/server'
+import { gsap } from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
+
 let images = ref<Entries[]>([])
+const size = 18
 let search = ref<string>('')
+const allRefsImages = ref({} as HTMLFormElement)
 let page = 1
 
 onMounted(async () => {
+    setScrollTrigger(allRefsImages.value[`image-${page * size - 1}`])
     images.value = fillPlaceholderImages(
         {
             name: '',
@@ -48,21 +64,35 @@ onMounted(async () => {
                 text: ''
             }
         },
-        18
+        size
     )
     const response = await getData()
     images.value = response.collection
 })
 
+onBeforeUpdate(() => {
+    allRefsImages.value = {} as HTMLFormElement
+})
+
 async function getData(size: number = 18, page: number = 1, search: string = ''): Promise<ImageFromApi> {
     if (search) {
-        return await $fetch(`/api/get-images?size=${size}&page=${1}&search=${search}`)
+        return await $fetch(`/api/get-images?size=${size}&page=${page}&search=${search}`)
     }
-    return await $fetch(`/api/get-images?size=${size}&page=${1}`)
+    return await $fetch(`/api/get-images?size=${size}&page=${page}`)
 }
 
 function fillPlaceholderImages(value: Entries, len: number): Entries[] {
     return [...Array(len).keys()].map(() => value)
+}
+
+function setScrollTrigger(trigger: HTMLFormElement) {
+    gsap.timeline({
+        scrollTrigger: {
+            trigger,
+            start: 'bottom bottom',
+            onEnter: ({ progress, direction, isActive }) => console.log(progress, direction, isActive)
+        }
+    })
 }
 </script>
 

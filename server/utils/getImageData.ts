@@ -2,8 +2,7 @@ import { RepoData, Entries } from '../../interfaces/server'
 import ImageDes from './ImageDes'
 import { EXCLUDE_FILES, GITHUB_IMAGE_URL } from '../constants/global'
 import ImageCloudinary from './ImageCloudinary'
-import getAllPublicIds from './getAllPublicIds'
-import checkIfItemExist from './checkIfImgExists'
+import { getAllPublicIds, checkIfImageExist } from './imagesHelpers'
 
 export default async function getImageData(data: RepoData, search: string): Promise<Entries[]> {
     const imgTableDescription = new ImageDes(data)
@@ -25,7 +24,7 @@ export default async function getImageData(data: RepoData, search: string): Prom
                     const description = imgTableDescription.getImageDescription(imageId)
                     let smallUrl = ''
 
-                    const isImgUploaded = checkIfItemExist(`free-wallpaper/small/${imageName}`, allImgsPid_url)
+                    const isImgUploaded = checkIfImageExist(`free-wallpaper/small/${imageName}`, allImgsPid_url)
                     if (isImgUploaded[0]) {
                         smallUrl = isImgUploaded[1]
                     } else {

@@ -13,6 +13,7 @@
                     </svg>
                 </span>
                 <input
+                    id="search"
                     class="placeholder:italic placeholder:text-slate-400 block bg-white w-full rounded-xl border-2 border-yellow-800 py-2 sm:pl-12 pl-9 pr-3 shadow-sm focus:outline-none focus:border-yellow-500 focus:ring-yellow-500 focus:ring-1 sm:text-2xl"
                     placeholder="Search for an image..."
                     type="text"

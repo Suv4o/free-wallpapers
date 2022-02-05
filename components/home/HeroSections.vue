@@ -133,12 +133,12 @@
                         </span>
                         <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                             <div class="rounded-md shadow">
-                                <a
-                                    href="#"
+                                <button
+                                    @click="scrollToSearch"
                                     class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-700 md:py-4 md:text-lg md:px-10"
                                 >
                                     Explore
-                                </a>
+                                </button>
                             </div>
                             <div class="mt-3 sm:mt-0 sm:ml-3">
                                 <a
@@ -164,12 +164,23 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
 import { MenuIcon, XIcon } from '@heroicons/vue/outline'
+import { gsap } from 'gsap'
+import ScrollTo from 'gsap/ScrollToPlugin'
+
+onMounted(() => {
+    gsap.registerPlugin(ScrollTo)
+    console.log(window)
+})
 
 const navigation = [
     { name: 'Top 10', href: '#' },
     { name: 'New Releases', href: '#' },
     { name: 'How to Contribute', href: '#' }
 ]
+function scrollToSearch() {
+    gsap.to(window, { duration: 1, scrollTo: { y: '#search', offsetY: 130, autoKill: true }, ease: 'power4.out' })
+}
 </script>

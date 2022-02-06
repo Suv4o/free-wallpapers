@@ -55,7 +55,7 @@ let page = 1
 
 onMounted(async () => {
     setScrollTrigger(allRefsImages.value[`image-${page * size - 1}`])
-    images.value = fillPlaceholderImages(
+    images.value = fillPlaceholderImages<Entries, number>(
         {
             name: '',
             extension: '',
@@ -81,7 +81,7 @@ async function getData(size: number = 18, page: number = 1, search: string = '')
     return await $fetch(`/api/get-images?size=${size}&page=${page}`)
 }
 
-function fillPlaceholderImages(value: Entries, len: number): Entries[] {
+function fillPlaceholderImages<T, U>(value: T, len: U): T[] {
     return [...Array(len).keys()].map(() => value)
 }
 

@@ -1,7 +1,7 @@
 import { Env } from '../interfaces/global'
 
 export default function env() {
-    const config: Env = {
+    const config: Readonly<Env> = {
         GITHUB_TOKEN: String(process.env.GITHUB_TOKEN),
         GITHUB_USERNAME: String(process.env.GITHUB_USERNAME),
         GITHUB_REPOSITORY: String(process.env.GITHUB_REPOSITORY),

@@ -3,7 +3,7 @@ import { Env } from '@/interfaces/global'
 export default function env() {
     const env = useRuntimeConfig()
 
-    const config: Env = reactive({
+    const config: Readonly<Env> = reactive({
         GITHUB_TOKEN: env.GITHUB_TOKEN,
         GITHUB_USERNAME: env.GITHUB_USERNAME,
         GITHUB_REPOSITORY: env.GITHUB_REPOSITORY,

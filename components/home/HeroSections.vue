@@ -156,7 +156,7 @@
         <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
             <img
                 class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
-                src="https://res.cloudinary.com/dwjulvkpq/image/upload/v1643539841/free-wallpaper/small/53-Image-Stirling-range.jpg"
+                src="https://res.cloudinary.com/dwjulvkpq/image/upload/s--bDHEwAZp--/c_scale,e_sharpen:100,h_550/v1644306942/web/free-wallpapers-hero-img.jpg"
                 alt=""
             />
         </div>

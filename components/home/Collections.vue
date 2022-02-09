@@ -3,18 +3,9 @@
         <div class="max-w-7xl mx-auto">
             <div class="max-w-2xl mx-auto sm:py-10 py-8 lg:max-w-none">
                 <div class="space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-6">
-                    <div
-                        v-for="(image, index) in images"
-                        :key="image.name"
-                        class="group relative"
-                        :ref="
-                            (el) => {
-                                if (el) allRefsImages[`image-${String(index)}`] = el
-                            }
-                        "
-                    >
+                    <div v-for="(image, index) in images" :key="image.name" class="group relative">
                         <div
-                            class="relative w-full h-80 bg-slate-300 rounded-lg overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1"
+                            class="relative w-full h-80 bg-gray-300 rounded-lg overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1"
                         >
                             <img
                                 v-if="image.smallUrl"
@@ -40,38 +31,30 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUpdate } from 'vue'
+import { ref, onMounted, onBeforeUnmount, onBeforeUpdate } from 'vue'
 import { ImageFromApi } from '@/interfaces/client'
 import { Entries } from '@/interfaces/server'
-import { gsap } from 'gsap'
-import ScrollTrigger from 'gsap/ScrollTrigger'
-gsap.registerPlugin(ScrollTrigger)
-
 let images = ref<Entries[]>([])
+const placeholderImgObj = {
+    name: '',
+    extension: '',
+    object: {
+        byteSize: 0,
+        text: ''
+    }
+}
+const isLoaded = ref(false)
+const search = ''
 const size = 18
-let search = ref<string>('')
-const allRefsImages = ref({} as HTMLFormElement)
 let page = 1
 
 onMounted(async () => {
-    setScrollTrigger(allRefsImages.value[`image-${page * size - 1}`])
-    images.value = fillPlaceholderImages<Entries, number>(
-        {
-            name: '',
-            extension: '',
-            object: {
-                byteSize: 0,
-                text: ''
-            }
-        },
-        size
-    )
-    const response = await getData()
-    images.value = response.collection
+    window.addEventListener('scroll', handleImageLoad)
+    loadImages()
 })
 
-onBeforeUpdate(() => {
-    allRefsImages.value = {} as HTMLFormElement
+onBeforeUnmount(() => {
+    window.removeEventListener('scroll', handleImageLoad)
 })
 
 async function getData(size: number = 18, page: number = 1, search: string = ''): Promise<ImageFromApi> {
@@ -85,14 +68,28 @@ function fillPlaceholderImages<T, U>(value: T, len: U): T[] {
     return [...Array(len).keys()].map(() => value)
 }
 
-function setScrollTrigger(trigger: HTMLFormElement) {
-    gsap.timeline({
-        scrollTrigger: {
-            trigger,
-            start: 'bottom bottom',
-            onEnter: ({ progress, direction, isActive }) => console.log(progress, direction, isActive)
-        }
-    })
+function handleImageLoad() {
+    if (currentPageScrollPercentage() > 90) {
+        loadImages()
+    }
+}
+
+async function loadImages() {
+    if (isLoaded.value) return
+    isLoaded.value = true
+    images.value = [...images.value, ...fillPlaceholderImages<Entries, number>(placeholderImgObj, size)]
+    const response = await getData(size, page++, search)
+    images.value = images.value.slice(0, images.value.length - size)
+    images.value = [...images.value, ...response.collection]
+    isLoaded.value = false
+}
+
+function currentPageScrollPercentage() {
+    return (
+        ((document.documentElement.scrollTop + document.body.scrollTop) /
+            (document.documentElement.scrollHeight - document.documentElement.clientHeight)) *
+        100
+    )
 }
 </script>
 

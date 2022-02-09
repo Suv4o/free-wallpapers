@@ -1,8 +1,9 @@
-import { RepoData, Entries } from '../../interfaces/server'
-import ImageDes from './ImageDes'
 import { EXCLUDE_FILES, GITHUB_IMAGE_URL } from '../constants/global'
-import ImageCloudinary from './ImageCloudinary'
 import { getAllPublicIds, checkIfImageExist } from './imagesHelpers'
+import { RepoData, Entries } from '../../interfaces/server'
+import ImageCloudinary from './ImageCloudinary'
+import ImageDes from './ImageDes'
+import env from '../env'
 
 export default async function getImageData(data: RepoData, search: string): Promise<Entries[]> {
     const imgTableDescription = new ImageDes(data)
@@ -24,13 +25,16 @@ export default async function getImageData(data: RepoData, search: string): Prom
                     const description = imgTableDescription.getImageDescription(imageId)
                     let smallUrl = ''
 
-                    const isImgUploaded = checkIfImageExist(`free-wallpaper/small/${imageName}`, allImgsPid_url)
+                    const isImgUploaded = checkIfImageExist(
+                        `${env().CLOUDINARY_FOLDER_NAME}/small/${imageName}`,
+                        allImgsPid_url
+                    )
                     if (isImgUploaded[0]) {
                         smallUrl = isImgUploaded[1]
                     } else {
                         const smallImage = await cloudinaryImg.upload({
                             imageUrl: `${GITHUB_IMAGE_URL + entry.name}`,
-                            public_id: `free-wallpaper/small/${imageName}`,
+                            public_id: `${env().CLOUDINARY_FOLDER_NAME}/small/${imageName}`,
                             transformation: { width: 600, sharpen: 100, quality: 50 }
                         })
                         smallUrl = smallImage.url ? smallImage.url : ''

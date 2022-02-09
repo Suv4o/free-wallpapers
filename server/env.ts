@@ -8,7 +8,8 @@ export default function env() {
         GITHUB_GRAPHQL_URL: String(process.env.GITHUB_GRAPHQL_URL),
         CLOUDINARY_CLOUD_NAME: String(process.env.CLOUDINARY_CLOUD_NAME),
         CLOUDINARY_API_KEY: String(process.env.CLOUDINARY_API_KEY),
-        CLOUDINARY_API_SECRET: String(process.env.CLOUDINARY_API_SECRET)
+        CLOUDINARY_API_SECRET: String(process.env.CLOUDINARY_API_SECRET),
+        CLOUDINARY_FOLDER_NAME: String(process.env.CLOUDINARY_FOLDER_NAME)
     }
 
     return config

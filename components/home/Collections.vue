@@ -79,9 +79,11 @@ async function loadImages() {
     isLoaded.value = true
     images.value = [...images.value, ...fillPlaceholderImages<Entries, number>(placeholderImgObj, size)]
     const response = await getData(size, page++, search)
-    images.value = images.value.slice(0, images.value.length - size)
-    images.value = [...images.value, ...response.collection]
-    isLoaded.value = false
+    if (response.collection.length) {
+        images.value = images.value.slice(0, images.value.length - size)
+        images.value = [...images.value, ...response.collection]
+        isLoaded.value = false
+    }
 }
 
 function currentPageScrollPercentage() {

@@ -3,7 +3,7 @@
         <div class="max-w-7xl mx-auto">
             <div class="max-w-2xl mx-auto sm:py-10 py-8 lg:max-w-none">
                 <div class="space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-6">
-                    <div v-for="(image, index) in images" :key="image.name" class="group relative">
+                    <div v-for="image in images" :key="image.name" class="group relative">
                         <div
                             class="relative w-full h-80 bg-gray-300 rounded-lg overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1"
                         >
@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, onBeforeUpdate } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { ImageFromApi } from '@/interfaces/client'
 import { Entries } from '@/interfaces/server'
 let images = ref<Entries[]>([])
@@ -44,9 +44,16 @@ const placeholderImgObj = {
     }
 }
 const isLoaded = ref(false)
-const search = ''
-const size = 18
-let page = 1
+const search = ref('')
+const configFetch = {
+    page: 1,
+    size: 18,
+    total: 0,
+    range: {
+        from: 0,
+        to: 0
+    }
+}
 
 onMounted(async () => {
     window.addEventListener('scroll', handleImageLoad)
@@ -76,11 +83,20 @@ function handleImageLoad() {
 
 async function loadImages() {
     if (isLoaded.value) return
+    if (configFetch.total && configFetch.total === configFetch.range.to) return
+
     isLoaded.value = true
-    images.value = [...images.value, ...fillPlaceholderImages<Entries, number>(placeholderImgObj, size)]
-    const response = await getData(size, page++, search)
+    images.value = [...images.value, ...fillPlaceholderImages<Entries, number>(placeholderImgObj, configFetch.size)]
+
+    const response = await getData(configFetch.size, configFetch.page++, search.value)
+    const [rangeFrom, rangeTo] = response.range.split('-')
+
+    configFetch.range.to = Number(rangeTo)
+    configFetch.range.from = Number(rangeFrom)
+    configFetch.total = response.total
+
     if (response.collection.length) {
-        images.value = images.value.slice(0, images.value.length - size)
+        images.value = images.value.slice(0, images.value.length - configFetch.size)
         images.value = [...images.value, ...response.collection]
         isLoaded.value = false
     }

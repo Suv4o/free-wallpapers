@@ -12,10 +12,12 @@
     "dependencies": {
         "@headlessui/vue": "^1.4.3",
         "@heroicons/vue": "^1.0.5",
+        "@pinia/nuxt": "^0.1.8",
         "@tailwindcss/aspect-ratio": "^0.4.0",
         "axios": "^0.24.0",
         "cloudinary": "^1.28.1",
         "gsap": "^3.9.1",
-        "markdown-tables-to-json": "^0.1.7"
+        "markdown-tables-to-json": "^0.1.7",
+        "pinia": "^2.0.11"
     }
 }

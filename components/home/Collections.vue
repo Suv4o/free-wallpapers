@@ -31,9 +31,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { useStore } from '@/store/main'
+import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import { ImageFromApi } from '@/interfaces/client'
 import { Entries } from '@/interfaces/server'
+const store = useStore()
 let images = ref<Entries[]>([])
 const placeholderImgObj = {
     name: '',
@@ -44,7 +46,6 @@ const placeholderImgObj = {
     }
 }
 const isLoaded = ref(false)
-const search = ref('')
 const configFetch = {
     page: 1,
     size: 18,
@@ -63,6 +64,19 @@ onMounted(async () => {
 onBeforeUnmount(() => {
     window.removeEventListener('scroll', handleImageLoad)
 })
+
+watch(
+    () => store.search,
+    (searchText) => {
+        console.log(searchText)
+        configFetch.page = 1
+        configFetch.size = 18
+        configFetch.total = 0
+        configFetch.range.from = 0
+        configFetch.range.to = 0
+        loadImages()
+    }
+)
 
 async function getData(size: number = 18, page: number = 1, search: string = ''): Promise<ImageFromApi> {
     if (search) {
@@ -88,7 +102,7 @@ async function loadImages() {
     isLoaded.value = true
     images.value = [...images.value, ...fillPlaceholderImages<Entries, number>(placeholderImgObj, configFetch.size)]
 
-    const response = await getData(configFetch.size, configFetch.page++, search.value)
+    const response = await getData(configFetch.size, configFetch.page++, store.search)
     const [rangeFrom, rangeTo] = response.range.split('-')
 
     configFetch.range.to = Number(rangeTo)

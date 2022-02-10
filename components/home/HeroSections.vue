@@ -164,7 +164,6 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
 import { MenuIcon, XIcon } from '@heroicons/vue/outline'
 import { gsap } from 'gsap'

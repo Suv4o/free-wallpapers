@@ -14,6 +14,8 @@
                 </span>
                 <input
                     id="search"
+                    @focus="scrollToSearch"
+                    v-model="store.search"
                     class="placeholder:italic placeholder:text-slate-400 block bg-white w-full rounded-xl border-2 border-yellow-800 py-2 sm:pl-12 pl-9 pr-3 shadow-sm focus:outline-none focus:border-yellow-500 focus:ring-yellow-500 focus:ring-1 sm:text-2xl"
                     placeholder="Search for an image..."
                     type="text"
@@ -24,6 +26,17 @@
     </div>
 </template>
 
-<script setup></script>
+<script setup lang="ts">
+import { useStore } from '@/store/main'
+import { gsap } from 'gsap'
+import ScrollTo from 'gsap/ScrollToPlugin'
+gsap.registerPlugin(ScrollTo)
+
+const store = useStore()
+
+function scrollToSearch() {
+    gsap.to(window, { duration: 1, scrollTo: { y: '#search', offsetY: 130, autoKill: true }, ease: 'power4.out' })
+}
+</script>
 
 <style lang="scss" scoped></style>

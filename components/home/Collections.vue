@@ -2,8 +2,8 @@
     <div>
         <div class="max-w-7xl mx-auto">
             <div class="max-w-2xl mx-auto sm:py-10 py-8 lg:max-w-none">
-                <div class="space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-6">
-                    <div v-for="image in images" :key="image.name" class="group relative">
+                <div class="space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-6" :key="refreshNo">
+                    <div v-for="(image, index) in images" :key="index" class="group relative">
                         <div
                             class="relative w-full h-80 bg-gray-300 rounded-lg overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1"
                         >
@@ -36,7 +36,7 @@ import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import { ImageFromApi } from '@/interfaces/client'
 import { Entries } from '@/interfaces/server'
 const store = useStore()
-let images = ref<Entries[]>([])
+const images = ref<Entries[]>([])
 const placeholderImgObj = {
     name: '',
     extension: '',
@@ -46,6 +46,7 @@ const placeholderImgObj = {
     }
 }
 const isLoaded = ref(false)
+let loadingStatus: 'open' | 'closed' | 'pending' = 'open'
 const configFetch = {
     page: 1,
     size: 18,
@@ -55,6 +56,8 @@ const configFetch = {
         to: 0
     }
 }
+
+const refreshNo = ref(0)
 
 onMounted(async () => {
     window.addEventListener('scroll', handleImageLoad)
@@ -68,7 +71,9 @@ onBeforeUnmount(() => {
 watch(
     () => store.search,
     (searchText) => {
+        loadingStatus = 'open'
         console.log(searchText)
+        images.value = []
         configFetch.page = 1
         configFetch.size = 18
         configFetch.total = 0
@@ -96,24 +101,32 @@ function handleImageLoad() {
 }
 
 async function loadImages() {
-    if (isLoaded.value) return
-    if (configFetch.total && configFetch.total === configFetch.range.to) return
+    if (loadingStatus === 'pending') return
+    if (loadingStatus === 'closed') return
 
+    refreshNo.value++
     isLoaded.value = true
+    loadingStatus = 'pending'
+
     images.value = [...images.value, ...fillPlaceholderImages<Entries, number>(placeholderImgObj, configFetch.size)]
 
     const response = await getData(configFetch.size, configFetch.page++, store.search)
     const [rangeFrom, rangeTo] = response.range.split('-')
 
-    configFetch.range.to = Number(rangeTo)
-    configFetch.range.from = Number(rangeFrom)
-    configFetch.total = response.total
-
     if (response.collection.length) {
         images.value = images.value.slice(0, images.value.length - configFetch.size)
         images.value = [...images.value, ...response.collection]
-        isLoaded.value = false
+        loadingStatus = 'open'
     }
+
+    if (!response.collection.length) {
+        images.value = []
+        loadingStatus = 'closed'
+    }
+
+    if (response.total && Number(rangeFrom) >= 1 && response.total === Number(rangeTo)) loadingStatus = 'closed'
+
+    isLoaded.value = false
 }
 
 function currentPageScrollPercentage() {

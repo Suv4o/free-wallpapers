@@ -61,6 +61,7 @@ const refreshNo = ref(0)
 
 onMounted(async () => {
     window.addEventListener('scroll', handleImageLoad)
+
     loadImages()
 })
 
